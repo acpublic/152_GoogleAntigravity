@@ -51,3 +51,7 @@
 ### Browser Agent
 - ブラウザ操作機能
 - ChromeでAntigravity Browser Extensionをインストール
+### 実装
+- Agentと会話
+### 修正
+- "View"を選択、表示された画像から指摘箇所とコメントを追加
