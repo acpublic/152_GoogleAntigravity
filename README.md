@@ -41,8 +41,8 @@
 ```
 ## 機能
 ### Agent Manager
-- Workspaces
 - Inbox
+- Workspaces
 - Playground
 ### Artifacts（成果物）
 - Task List（タスクリスト）
