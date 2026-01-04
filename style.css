@@ -1,0 +1,251 @@
+:root {
+    --bg-color: #0f172a;
+    --glass-bg: rgba(30, 41, 59, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --accent-color: #38bdf8;
+    --accent-glow: rgba(56, 189, 248, 0.4);
+    --btn-bg: rgba(255, 255, 255, 0.03);
+    --btn-hover: rgba(255, 255, 255, 0.1);
+    --btn-active: rgba(255, 255, 255, 0.15);
+    --operator-bg: rgba(56, 189, 248, 0.15);
+    --operator-hover: rgba(56, 189, 248, 0.25);
+    --equals-bg: linear-gradient(135deg, #38bdf8 0%, #2563eb 100%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    min-height: 100vh;
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: var(--text-primary);
+}
+
+/* Background Atmospheric Blobs */
+.background-blobs {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.blob {
+    position: absolute;
+    filter: blur(80px);
+    opacity: 0.6;
+    border-radius: 50%;
+    animation: floating 20s infinite alternate ease-in-out;
+}
+
+.blob-1 {
+    top: -10%;
+    left: -10%;
+    width: 500px;
+    height: 500px;
+    background: #4f46e5;
+    animation-delay: 0s;
+}
+
+.blob-2 {
+    bottom: -10%;
+    right: -10%;
+    width: 400px;
+    height: 400px;
+    background: #0ea5e9;
+    animation-delay: -5s;
+}
+
+.blob-3 {
+    top: 40%;
+    left: 40%;
+    width: 300px;
+    height: 300px;
+    background: #7c3aed;
+    animation-delay: -10s;
+}
+
+@keyframes floating {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    100% {
+        transform: translate(30px, 50px) scale(1.1);
+    }
+}
+
+/* Calculator Container */
+.calculator {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 32px;
+    padding: 20px;
+    box-shadow:
+        0 25px 50px -12px rgba(0, 0, 0, 0.5),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    width: 100%;
+    max-width: 560px;
+    transform: translateZ(0);
+    /* Hardware acceleration */
+}
+
+/* Display */
+.display-container {
+    padding: 16px 24px;
+    margin-bottom: 16px;
+    text-align: right;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+.previous-operand {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    min-height: 1.5rem;
+    margin-bottom: 8px;
+    font-weight: 300;
+}
+
+.current-operand {
+    color: var(--text-primary);
+    font-size: 3.5rem;
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+}
+
+/* Grid */
+.buttons-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    justify-items: center;
+}
+
+/* Buttons */
+.btn {
+    border: none;
+    outline: none;
+    background: var(--btn-bg);
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    font-weight: 400;
+    height: 60px;
+    width: 60px;
+    /* Ensure absolute circle/squircle ratio logic if needed, but flex-like grid is safer */
+    /* Fill grid cell */
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn:hover {
+    background: var(--btn-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+    background: var(--btn-active);
+    transform: translateY(1px);
+}
+
+/* Button Variants */
+.btn-function {
+    color: var(--accent-color);
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.btn-operator {
+    background: var(--operator-bg);
+    color: var(--accent-color);
+    border-radius: 50%;
+    /* Circle operators looks nice */
+    font-size: 1.75rem;
+    font-weight: 300;
+}
+
+.btn-operator:hover {
+    background: var(--operator-hover);
+    box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.btn-equals {
+    background: var(--equals-bg);
+    grid-column: span 1;
+    /* width: 100%; removed to keep circle shape from .btn */
+    border-radius: 50%;
+    font-size: 2rem;
+    box-shadow: 0 10px 20px rgba(56, 189, 248, 0.3);
+}
+
+.btn-equals:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 15px 30px rgba(56, 189, 248, 0.4);
+}
+
+.btn-zero {
+    grid-column: span 2;
+    width: 132px;
+    /* 60*2 + 12 */
+    border-radius: 45px;
+    text-align: left;
+    padding-left: 32px;
+    justify-content: flex-start;
+}
+
+/* Responsive */
+@media (max-width: 400px) {
+    .calculator {
+        height: 100vh;
+        width: 100vw;
+        max-width: none;
+        border-radius: 0;
+        border: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+
+    .blob {
+        display: none;
+        /* Save performance on mobile */
+    }
+
+    .buttons-grid {
+        gap: 12px;
+    }
+
+    .btn {
+        height: 64px;
+        font-size: 1.25rem;
+    }
+}
