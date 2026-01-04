@@ -45,3 +45,5 @@
 - Task List（タスクリスト）
 - Implementation Plan（実装計画書）
 - Walkthrough（作業内容のサマリー）
+### Antigravity Browser
+- ChromeでAntigravity Browser Extensionをインストール
