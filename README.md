@@ -40,10 +40,14 @@
 - フォルダ名はこのチャットのトピックを表す適切な英語名とし、スペースはアンダースコアで区切る。   
 ```
 ## 機能
-### Manager View
+### Agent Manager
+- Workspaces
+- Inbox
+- Playground
 ### Artifacts（成果物）
 - Task List（タスクリスト）
 - Implementation Plan（実装計画書）
 - Walkthrough（作業内容のサマリー）
-### Antigravity Browser
+### Browser Agent
+- ブラウザ操作機能
 - ChromeでAntigravity Browser Extensionをインストール
